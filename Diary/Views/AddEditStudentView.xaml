@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:Diary"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        Name ="AddEditSutendWindow"
         Title="Dane ucznia" Height="520" Width="400
         ">
     <Grid>
@@ -29,41 +30,72 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        <Label Grid.Row="0" Content="Id:" Margin="5"/>
-        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5"/>
+        <Label Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}" 
+               Grid.Row="0" 
+               Content="Id:" 
+               Margin="5"/>
+        <TextBox Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"
+                 Text="{Binding Student.Id}" 
+                 IsReadOnly="True" 
+                 Grid.Row="0" 
+                 Grid.Column="1" 
+                 Margin="5"/>
 
         <Label Grid.Row="1" Content="Imie:" Margin="5"/>
-        <TextBlock Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.FirstName}" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="2" Content="Nazwisko:" Margin="5"/>
-        <TextBlock Grid.Row="2" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.LastName}" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="3" Content="Matematyka:" Margin="5"/>
-        <TextBlock Grid.Row="3" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.Math}" Grid.Row="3" Grid.Column="1" Margin="5"/>
         
         <Label Grid.Row="4" Content="Technologia:" Margin="5"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.Technology}" Grid.Row="4" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="5" Content="Fizyka:" Margin="5"/>
-        <TextBlock Grid.Row="5" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.Phyics}" Grid.Row="5" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="6" Content="Jęz. pol:" Margin="5"/>
-        <TextBlock Grid.Row="6" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.PolishLang}" Grid.Row="6" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="7" Content="Jęz. ang:" Margin="5"/>
-        <TextBlock Grid.Row="7" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.EngilshLang}" Grid.Row="7" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="8" Content="Grupa:" Margin="5"/>
-        <ComboBox Grid.Row="8" Grid.Column="1" Margin="5"/>
+        <ComboBox 
+            Grid.Row="8" 
+            Grid.Column="1" 
+            Margin="5"
+            ItemsSource="{Binding Groups}"
+            SelectedValue="{Binding Student.Group.Id}"
+            DisplayMemberPath="Name"
+            SelectedValuePath="Id"/>
         
-        <CheckBox Content="Zajęcia Dodadkowe" Grid.Row="9" Grid.Column="1" Margin="5"/>
+        <CheckBox IsChecked="{Binding Student.Activitis}" Content="Zajęcia Dodadkowe" Grid.Row="9" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="10" Content="Uwagi:" Margin="5"/>
-        <TextBlock Grid.Row="10" Grid.Column="1" Margin="5"/>
+        <TextBox 
+            TextWrapping="Wrap"
+            Text="{Binding Student.Comments}" 
+            AcceptsReturn="True"
+            Grid.Row="10" 
+            Grid.Column="1" 
+            Margin="5"/>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Right">
-            <Button  Content="Zatwierdz" Height="25" Width="100" Margin="5" />
-            <Button  Content="Anuluj" Height="25" Width="100" Margin="5"/>
+            <Button Command="{Binding ComfirmCommand}" 
+                    CommandParameter="{Binding ElementName=AddEditSutendWindow}"
+                    Content="Zatwierdz" 
+                    Height="25" 
+                    Width="100" 
+                    Margin="5" />
+            <Button Command="{Binding CloseCommand}" 
+                    CommandParameter="{Binding ElementName=AddEditSutendWindow}"
+                    Content="Anuluj" 
+                    Height="25" 
+                    Width="100" 
+                    Margin="5"/>
         </StackPanel>
 
     </Grid>

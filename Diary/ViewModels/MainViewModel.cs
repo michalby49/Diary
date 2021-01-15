@@ -22,25 +22,6 @@ namespace Diary.ViewModels
             InitGroups();
         }
 
-        private static ObservableCollection<Student> RefreshDiary()
-        {
-            return new ObservableCollection<Student>
-            {
-                new Student
-                {
-                    FirstName = "Michał",
-                    LastName = "Beśka",
-                    Group = new Group{ID = 1}
-                },
-                new Student
-                {
-                    FirstName = "Wiki",
-                    LastName = "F",
-                    Group = new Group{ID = 2}
-                },
-            };
-        }
-
         private int _selectedGroupId;
 
         public int SelectedGroupId
@@ -53,10 +34,7 @@ namespace Diary.ViewModels
             }
         }
 
-        private bool CanRefreshStudents(object obj)
-        {
-            return true;
-        }
+        
         private ObservableCollection<Group> _groups;
 
         public ObservableCollection<Group> Groups
@@ -68,6 +46,7 @@ namespace Diary.ViewModels
                 onPropertyChanged();
             }
         }
+
         private Student _selectedStudent;
 
         public Student SelectedStudent
@@ -103,13 +82,20 @@ namespace Diary.ViewModels
             if (dialog != MessageDialogResult.Affirmative)
                 return;
         }
+        
 
         private void AddEditStudent(object obj)
         {
-            var addEditStudent = new AddEditStudentView();
+            var addEditStudentWindow = new AddEditStudentView(obj as Student);
+            addEditStudentWindow.Closed += AddEditStudentWindow_Closed;
+            addEditStudentWindow.ShowDialog();
         }
 
-       
+        private void AddEditStudentWindow_Closed(object sender, System.EventArgs e)
+        {
+            RefreshDiary();
+        }
+
         private bool CanEditDeleteStudent(object obj)
         {
             return SelectedStudent != null;
@@ -118,12 +104,33 @@ namespace Diary.ViewModels
         {
             Groups = new ObservableCollection<Group>
             {
-                new Group {ID = 0, Name ="Wszystkie"},
-                new Group {ID = 1, Name ="1A"},
-                new Group {ID = 2, Name ="1B"},
+                new Group {Id = 0, Name ="Wszystkie"},
+                new Group {Id = 1, Name ="1A"},
+                new Group {Id = 2, Name ="1B"},
             };
+            SelectedGroupId = 0;
         }
+        private void RefreshDiary()
+        {
 
+            Students = new ObservableCollection<Student>
+            {
+                new Student
+                {
+                    FirstName = "Michał",
+                    LastName = "Beśka",
+                    Group = new Group { Id = 1 }
+                },
+                new Student
+                {
+                    FirstName = "Wiki",
+                    LastName = "Freus",
+                    Group = new Group { Id = 2 }
+                }
+            };
+
+
+        }
 
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }

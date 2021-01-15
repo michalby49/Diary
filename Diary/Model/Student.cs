@@ -8,10 +8,14 @@ namespace Diary.Model
 {
     public class Student
     {
+        public Student()
+        {
+            Group = new Group();
+        }
         public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Commends { get; set; }
+        public string Comments { get; set; }
         public string Math { get; set; }
         public string Technology { get; set; }
         public string Physics { get; set; }

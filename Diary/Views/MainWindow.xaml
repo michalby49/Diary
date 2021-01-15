@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:local="clr-namespace:Diary"
+        xmlns:local="clr-namespace:Diary" xmlns:viewmodels="clr-namespace:Diary.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Dziennik Ucznia" Height="450" Width="817">
@@ -27,6 +27,7 @@
                     />
             
             <Button Command="{Binding EditStudentCommand}" 
+                    CommandParameter="{Binding SeletedStudent}"
                     Content="Edytuj" 
                     Height="25" 
                     Width="100" 

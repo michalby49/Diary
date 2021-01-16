@@ -9,14 +9,16 @@ using System.Windows.Input;
 using Diary.Views;
 using Diary.Model.Wrappers;
 using System.Linq;
+using Diary.Model.Domains;
 
 namespace Diary.ViewModels
 {
     class MainViewModel : ViewModelBase
     {
+        private Repository _repository = new Repository();
         public MainViewModel()
         {
-            using (var context = new AplicationDbContext())
+            using (var context = new ApplicationDbContext())
             {
                 var students = context.Students.ToList();
             }
@@ -42,9 +44,9 @@ namespace Diary.ViewModels
         }
 
         
-        private ObservableCollection<GroupWrapper> _groups;
+        private ObservableCollection<Group> _groups;
 
-        public ObservableCollection<GroupWrapper> Groups
+        public ObservableCollection<Group> Groups
         {
             get { return _groups; }
             set
@@ -54,9 +56,9 @@ namespace Diary.ViewModels
             }
         }
 
-        private StudentWraaper _selectedStudent;
+        private StudentWrapper _selectedStudent;
 
-        public StudentWraaper SelectedStudent
+        public StudentWrapper SelectedStudent
         {
             get { return _selectedStudent; }
             set 
@@ -65,9 +67,9 @@ namespace Diary.ViewModels
                 onPropertyChanged();
             }
         }
-        private ObservableCollection<StudentWraaper> _students;
+        private ObservableCollection<StudentWrapper> _students;
                 
-        public ObservableCollection<StudentWraaper> Students
+        public ObservableCollection<StudentWrapper> Students
         {
             get { return _students; }
             set 
@@ -88,12 +90,14 @@ namespace Diary.ViewModels
 
             if (dialog != MessageDialogResult.Affirmative)
                 return;
+
+            _repository.DeleteStudent(SelectedStudent.Id);
         }
         
 
         private void AddEditStudent(object obj)
         {
-            var addEditStudentWindow = new AddEditStudentView(obj as StudentWraaper);
+            var addEditStudentWindow = new AddEditStudentView(obj as StudentWrapper);
             addEditStudentWindow.Closed += AddEditStudentWindow_Closed;
             addEditStudentWindow.ShowDialog();
         }
@@ -109,34 +113,19 @@ namespace Diary.ViewModels
         }
         private void InitGroups()
         {
-            Groups = new ObservableCollection<GroupWrapper>
-            {
-                new GroupWrapper {Id = 0, Name ="Wszystkie"},
-                new GroupWrapper {Id = 1, Name ="1A"},
-                new GroupWrapper {Id = 2, Name ="1B"},
-            };
+            var groups = _repository.GetGroups();
+            groups.Insert(0, new Group { Id = 0, Name = "Wszystkie" });
+
+            Groups = new ObservableCollection<Group>(groups);
+            
             SelectedGroupId = 0;
         }
         private void RefreshDiary()
         {
 
-            Students = new ObservableCollection<StudentWraaper>
-            {
-                new StudentWraaper
-                {
-                    FirstName = "Michał",
-                    LastName = "Beśka",
-                    Group = new GroupWrapper { Id = 1 }
-                },
-                new StudentWraaper
-                {
-                    FirstName = "Wiki",
-                    LastName = "Freus",
-                    Group = new GroupWrapper { Id = 2 }
-                }
-            };
-
-
+            Students = new ObservableCollection<StudentWrapper>
+                (_repository.GetStudents(SelectedGroupId));
+            
         }
 
         public ICommand AddStudentCommand { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Diary.Commands;
 using Diary.Model;
+using Diary.Model.Domains;
 using Diary.Model.Wrappers;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,15 @@ namespace Diary.ViewModels
 {
     class AddEditStudentViewModel : ViewModelBase
     {
-        public AddEditStudentViewModel(StudentWraaper student = null)
+        private Repository _repository = new Repository();
+        public AddEditStudentViewModel(StudentWrapper student = null)
         {
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
 
             if(student == null)
             {
-                Student = new StudentWraaper();
+                Student = new StudentWrapper();
             }
             else
             {
@@ -47,9 +49,9 @@ namespace Diary.ViewModels
         }
 
 
-        private ObservableCollection<GroupWrapper> _groups;
+        private ObservableCollection<Group> _groups;
 
-        public ObservableCollection<GroupWrapper> Groups
+        public ObservableCollection<Group> Groups
         {
             get { return _groups; }
             set
@@ -59,9 +61,9 @@ namespace Diary.ViewModels
             }
         }
 
-        private StudentWraaper _student;
+        private StudentWrapper _student;
 
-        public StudentWraaper Student
+        public StudentWrapper Student
         {
             get { return _student; }
             set { _student = value; }
@@ -76,35 +78,31 @@ namespace Diary.ViewModels
         }
         private void InitGroups()
         {
-            Groups = new ObservableCollection<GroupWrapper>
-            {
-                new GroupWrapper {Id = 0, Name ="-Brak-"},
-                new GroupWrapper {Id = 1, Name ="1A"},
-                new GroupWrapper {Id = 2, Name ="1B"},
-            };
-            Student.Group.Id = 0;
+            var groups = _repository.GetGroups();
+            groups.Insert(0, new Group { Id = 0, Name = "-Brak-" });
+
+            Groups = new ObservableCollection<Group>(groups);
+
+            SelectedGroupId = 0;
         }
         private void Confirm(object obj)
         {
             if(!IsUpdate)
-            {
                 AddStudent();
-            }
             else
-            {
                 UpdateStudent();
-            }
+
             CloseWindow(obj as Window);
         }
 
         private void UpdateStudent()
         {
-            //BazaDanych
+            _repository.UpdateStudent(Student);
         }
 
         private void AddStudent()
         {
-            //BazaDanych
+            _repository.AddStudent(Student);
         }
 
         private void Close(object obj)

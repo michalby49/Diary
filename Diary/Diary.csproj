@@ -87,9 +87,23 @@
     <Compile Include="AplicationDbContext.cs" />
     <Compile Include="Commends\AsyncRelayCommand.cs" />
     <Compile Include="Commends\RelayComand.cs" />
+    <Compile Include="Migrations\202101161040131_InitialCreate.cs" />
+    <Compile Include="Migrations\202101161040131_InitialCreate.Designer.cs">
+      <DependentUpon>202101161040131_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101161243510_SetFirstNameMaxNameAndRequiredIntudentTable.cs" />
+    <Compile Include="Migrations\202101161243510_SetFirstNameMaxNameAndRequiredIntudentTable.Designer.cs">
+      <DependentUpon>202101161243510_SetFirstNameMaxNameAndRequiredIntudentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101161250104_SetLastNameAndRequirmendInStudentTable.cs" />
+    <Compile Include="Migrations\202101161250104_SetLastNameAndRequirmendInStudentTable.Designer.cs">
+      <DependentUpon>202101161250104_SetLastNameAndRequirmendInStudentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Configurations\GroupConfiguration.cs" />
     <Compile Include="Model\Configurations\RatingConfiguration.cs" />
     <Compile Include="Model\Configurations\StudentConfiguration.cs" />
+    <Compile Include="Model\Converters\StudentConverter.cs" />
     <Compile Include="Model\Domains\Collection.cs" />
     <Compile Include="Model\Domains\Group.cs" />
     <Compile Include="Model\Domains\Rating.cs" />
@@ -97,6 +111,7 @@
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\Wrappers\GroupWrapper.cs" />
     <Compile Include="Model\Wrappers\StudentWraaper.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="ViewModels\AddEditStudentViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -126,6 +141,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202101161040131_InitialCreate.resx">
+      <DependentUpon>202101161040131_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101161243510_SetFirstNameMaxNameAndRequiredIntudentTable.resx">
+      <DependentUpon>202101161243510_SetFirstNameMaxNameAndRequiredIntudentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101161250104_SetLastNameAndRequirmendInStudentTable.resx">
+      <DependentUpon>202101161250104_SetLastNameAndRequirmendInStudentTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -139,8 +163,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Model\Converters\" />
+    <Content Include="DbScripts\202101161250104_SetLastNameAndRequirmendInStudentTable.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

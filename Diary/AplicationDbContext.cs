@@ -6,10 +6,10 @@ using System.Linq;
 
 namespace Diary
 {
-    public class AplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
        
-        public AplicationDbContext()
+        public ApplicationDbContext()
             : base("name=AplicationDbContext")
         {
         }

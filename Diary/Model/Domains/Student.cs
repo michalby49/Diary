@@ -16,5 +16,7 @@ namespace Diary.Model.Domains
         public int GroupId { get; set; }
 
         public Group Group { get; set; }
+        public ICollection<Rating> Ratings { get; set; }
+
     }
 }

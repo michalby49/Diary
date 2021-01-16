@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:local="clr-namespace:Diary"
+        xmlns:local="clr-namespace:Diary" xmlns:viewmodels="clr-namespace:Diary.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddEditStudentViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Name ="AddEditSutendWindow"
@@ -54,13 +54,13 @@
         <TextBox Text="{Binding Student.Technology}" Grid.Row="4" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="5" Content="Fizyka:" Margin="5"/>
-        <TextBox Text="{Binding Student.Phyics}" Grid.Row="5" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.Physics}" Grid.Row="5" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="6" Content="Jęz. pol:" Margin="5"/>
         <TextBox Text="{Binding Student.PolishLang}" Grid.Row="6" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="7" Content="Jęz. ang:" Margin="5"/>
-        <TextBox Text="{Binding Student.EngilshLang}" Grid.Row="7" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.EnglishLang}" Grid.Row="7" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="8" Content="Grupa:" Margin="5"/>
         <ComboBox 
@@ -72,7 +72,7 @@
             DisplayMemberPath="Name"
             SelectedValuePath="Id"/>
         
-        <CheckBox IsChecked="{Binding Student.Activitis}" Content="Zajęcia Dodadkowe" Grid.Row="9" Grid.Column="1" Margin="5"/>
+        <CheckBox IsChecked="{Binding Student.Activities}" Content="Zajęcia Dodadkowe" Grid.Row="9" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="10" Content="Uwagi:" Margin="5"/>
         <TextBox 

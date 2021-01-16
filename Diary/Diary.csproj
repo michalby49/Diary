@@ -87,8 +87,16 @@
     <Compile Include="AplicationDbContext.cs" />
     <Compile Include="Commends\AsyncRelayCommand.cs" />
     <Compile Include="Commends\RelayComand.cs" />
-    <Compile Include="Model\Group.cs" />
-    <Compile Include="Model\Student.cs" />
+    <Compile Include="Model\Configurations\GroupConfiguration.cs" />
+    <Compile Include="Model\Configurations\RatingConfiguration.cs" />
+    <Compile Include="Model\Configurations\StudentConfiguration.cs" />
+    <Compile Include="Model\Domains\Collection.cs" />
+    <Compile Include="Model\Domains\Group.cs" />
+    <Compile Include="Model\Domains\Rating.cs" />
+    <Compile Include="Model\Domains\Student.cs" />
+    <Compile Include="Model\Subject.cs" />
+    <Compile Include="Model\Wrappers\GroupWrapper.cs" />
+    <Compile Include="Model\Wrappers\StudentWraaper.cs" />
     <Compile Include="ViewModels\AddEditStudentViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -131,6 +139,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\Converters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

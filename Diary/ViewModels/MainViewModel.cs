@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Diary.Views;
+using Diary.Model.Wrappers;
+using System.Linq;
 
 namespace Diary.ViewModels
 {
@@ -14,6 +16,11 @@ namespace Diary.ViewModels
     {
         public MainViewModel()
         {
+            using (var context = new AplicationDbContext())
+            {
+                var students = context.Students.ToList();
+            }
+
             AddStudentCommand = new RelayCommand(AddEditStudent);
             EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
@@ -35,9 +42,9 @@ namespace Diary.ViewModels
         }
 
         
-        private ObservableCollection<Group> _groups;
+        private ObservableCollection<GroupWrapper> _groups;
 
-        public ObservableCollection<Group> Groups
+        public ObservableCollection<GroupWrapper> Groups
         {
             get { return _groups; }
             set
@@ -47,9 +54,9 @@ namespace Diary.ViewModels
             }
         }
 
-        private Student _selectedStudent;
+        private StudentWraaper _selectedStudent;
 
-        public Student SelectedStudent
+        public StudentWraaper SelectedStudent
         {
             get { return _selectedStudent; }
             set 
@@ -58,9 +65,9 @@ namespace Diary.ViewModels
                 onPropertyChanged();
             }
         }
-        private ObservableCollection<Student> _students;
+        private ObservableCollection<StudentWraaper> _students;
                 
-        public ObservableCollection<Student> Students
+        public ObservableCollection<StudentWraaper> Students
         {
             get { return _students; }
             set 
@@ -86,7 +93,7 @@ namespace Diary.ViewModels
 
         private void AddEditStudent(object obj)
         {
-            var addEditStudentWindow = new AddEditStudentView(obj as Student);
+            var addEditStudentWindow = new AddEditStudentView(obj as StudentWraaper);
             addEditStudentWindow.Closed += AddEditStudentWindow_Closed;
             addEditStudentWindow.ShowDialog();
         }
@@ -102,30 +109,30 @@ namespace Diary.ViewModels
         }
         private void InitGroups()
         {
-            Groups = new ObservableCollection<Group>
+            Groups = new ObservableCollection<GroupWrapper>
             {
-                new Group {Id = 0, Name ="Wszystkie"},
-                new Group {Id = 1, Name ="1A"},
-                new Group {Id = 2, Name ="1B"},
+                new GroupWrapper {Id = 0, Name ="Wszystkie"},
+                new GroupWrapper {Id = 1, Name ="1A"},
+                new GroupWrapper {Id = 2, Name ="1B"},
             };
             SelectedGroupId = 0;
         }
         private void RefreshDiary()
         {
 
-            Students = new ObservableCollection<Student>
+            Students = new ObservableCollection<StudentWraaper>
             {
-                new Student
+                new StudentWraaper
                 {
                     FirstName = "Michał",
                     LastName = "Beśka",
-                    Group = new Group { Id = 1 }
+                    Group = new GroupWrapper { Id = 1 }
                 },
-                new Student
+                new StudentWraaper
                 {
                     FirstName = "Wiki",
                     LastName = "Freus",
-                    Group = new Group { Id = 2 }
+                    Group = new GroupWrapper { Id = 2 }
                 }
             };
 

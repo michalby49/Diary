@@ -92,12 +92,15 @@ namespace Diary.ViewModels
                 return;
 
             _repository.DeleteStudent(SelectedStudent.Id);
+
+            RefreshDiary();
         }
         
 
         private void AddEditStudent(object obj)
         {
-            var addEditStudentWindow = new AddEditStudentView(obj as StudentWrapper);
+            var addEditStudentWindow = new AddEditStudentView(SelectedStudent);
+
             addEditStudentWindow.Closed += AddEditStudentWindow_Closed;
             addEditStudentWindow.ShowDialog();
         }

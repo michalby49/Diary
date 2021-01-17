@@ -66,7 +66,11 @@ namespace Diary.ViewModels
         public StudentWrapper Student
         {
             get { return _student; }
-            set { _student = value; }
+            set 
+            { 
+                _student = value;
+                onPropertyChanged();
+            }
         }
 
         private bool _isUpdate;
@@ -74,7 +78,11 @@ namespace Diary.ViewModels
         public bool IsUpdate
         {
             get { return _isUpdate; }
-            set { _isUpdate = value; }
+            set 
+            { 
+                _isUpdate = value;
+                onPropertyChanged();
+            }
         }
         private void InitGroups()
         {
@@ -83,11 +91,11 @@ namespace Diary.ViewModels
 
             Groups = new ObservableCollection<Group>(groups);
 
-            SelectedGroupId = 0;
+            SelectedGroupId = Student.Group.Id;
         }
         private void Confirm(object obj)
         {
-            if(!IsUpdate)
+            if (!IsUpdate)
                 AddStudent();
             else
                 UpdateStudent();

@@ -84,12 +84,12 @@
             Margin="5"/>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Right">
-            <Button Command="{Binding ComfirmCommand}" 
+            <Button Command="{Binding ConfirmCommand}" 
                     CommandParameter="{Binding ElementName=AddEditSutendWindow}"
-                    Content="Zatwierdz" 
+                    Content="Zatwierdź" 
                     Height="25" 
                     Width="100" 
-                    Margin="5" />
+                    Margin="5"/>
             <Button Command="{Binding CloseCommand}" 
                     CommandParameter="{Binding ElementName=AddEditSutendWindow}"
                     Content="Anuluj" 

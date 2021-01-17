@@ -65,19 +65,17 @@ namespace Diary.Model.Converters
         {
             var ratings = new List<Rating>();
 
-            if(string.IsNullOrWhiteSpace(model.Math))
-            {
+            if(!string.IsNullOrWhiteSpace(model.Math))
                 model.Math.Split(',')
-                    .ToList()
-                    .ForEach(x => ratings.Add(
+                    .ToList().ForEach(x => ratings.Add(
                     new Rating
                     {
                         Rate = int.Parse(x),
                         StudentId = model.Id,
                         SubjectId = (int)Subject.Math
                     }));
-            }
-            if (string.IsNullOrWhiteSpace(model.Technology))
+            
+            if (!string.IsNullOrWhiteSpace(model.Technology))
             {
                 model.Technology.Split(',')
                     .ToList()
@@ -89,7 +87,7 @@ namespace Diary.Model.Converters
                         SubjectId = (int)Subject.Technology
                     }));
             }
-            if (string.IsNullOrWhiteSpace(model.Physics))
+            if (!string.IsNullOrWhiteSpace(model.Physics))
             {
                 model.Physics.Split(',')
                     .ToList()
@@ -101,7 +99,7 @@ namespace Diary.Model.Converters
                         SubjectId = (int)Subject.Physics
                     }));
             }
-            if (string.IsNullOrWhiteSpace(model.PolishLang))
+            if (!string.IsNullOrWhiteSpace(model.PolishLang))
             {
                 model.PolishLang.Split(',')
                     .ToList()
@@ -113,7 +111,7 @@ namespace Diary.Model.Converters
                         SubjectId = (int)Subject.PolishLang
                     }));
             }
-            if (string.IsNullOrWhiteSpace(model.EnglishLang))
+            if (!string.IsNullOrWhiteSpace(model.EnglishLang))
             {
                 model.EnglishLang.Split(',')
                     .ToList()

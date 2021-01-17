@@ -73,7 +73,7 @@
                 <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
                 <DataGridTextColumn Binding="{Binding FirstName}" Header="Imie" />
                 <DataGridTextColumn Binding="{Binding LastName}" Header="Nazwisko" />
-                <DataGridTextColumn Binding="{Binding Commends}" Header="Uwagi" />
+                <DataGridTextColumn Binding="{Binding Comments}" Header="Uwagi" />
                 <DataGridTextColumn Binding="{Binding Math}" Header="Matematyka" />
                 <DataGridTextColumn Binding="{Binding Technology}" Header="Technologia" />
                 <DataGridTextColumn Binding="{Binding Physics}" Header="Fizyka" />

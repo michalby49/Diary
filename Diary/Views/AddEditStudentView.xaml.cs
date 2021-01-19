@@ -16,6 +16,6 @@ namespace Diary.Views
             DataContext = new AddEditStudentViewModel(student);
         }
 
-        
+
     }
 }

@@ -52,9 +52,16 @@
                 SelectedValuePath="Id"
                 
                 />
+           
             <Button 
                 Command="{Binding RefreshStudentsCommand}" 
                 Content="Odśwież" 
+                Height="25" Width="100" 
+                Margin="5" 
+                />
+            <Button 
+                Command="{Binding SettingsCommand}" 
+                Content="Ustawienia" 
                 Height="25" Width="100" 
                 Margin="5" 
                 />
@@ -79,7 +86,7 @@
                 <DataGridTextColumn Binding="{Binding Physics}" Header="Fizyka" />
                 <DataGridTextColumn Binding="{Binding PolishLang}" Header="Polski" />
                 <DataGridTextColumn Binding="{Binding EnglishLang}" Header="Angielski" />
-                <DataGridCheckBoxColumn Binding="{Binding Activitis}" Header="Zajęcia dodatkowe" />
+                <DataGridCheckBoxColumn Binding="{Binding Activities}" Header="Zajęcia dodatkowe" />
                 <DataGridTextColumn Binding="{Binding Group.Name}" Header="Grupa" />
             </DataGrid.Columns>
         </DataGrid>

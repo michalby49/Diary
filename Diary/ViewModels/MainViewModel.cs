@@ -10,6 +10,7 @@ using Diary.Views;
 using Diary.Model.Wrappers;
 using System.Linq;
 using Diary.Model.Domains;
+using System;
 
 namespace Diary.ViewModels
 {
@@ -27,9 +28,12 @@ namespace Diary.ViewModels
             EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
+            SettingsStudentsCommand = new RelayCommand(OpenSettings);
             RefreshDiary();
             InitGroups();
         }
+
+        
 
         private int _selectedGroupId;
 
@@ -78,7 +82,10 @@ namespace Diary.ViewModels
                 onPropertyChanged();
             }
         }
-
+        private void OpenSettings(object obj)
+        {
+            //var openSettings = new SettingsView();
+        }
         private void RefreshStudents(object obj)
         {
             RefreshDiary();
@@ -135,5 +142,6 @@ namespace Diary.ViewModels
         public ICommand EditStudentCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
         public ICommand RefreshStudentsCommand { get; set; }
+        public ICommand SettingsStudentsCommand { get; set; }
     }
 }

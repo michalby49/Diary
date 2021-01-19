@@ -19,6 +19,7 @@ namespace Diary.ViewModels
         private Repository _repository = new Repository();
         public MainViewModel()
         {
+            
             using (var context = new ApplicationDbContext())
             {
                 var students = context.Students.ToList();
@@ -28,7 +29,8 @@ namespace Diary.ViewModels
             EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
-            SettingsStudentsCommand = new RelayCommand(OpenSettings);
+            SettingsCommand = new RelayCommand(OpenSettings);
+
             RefreshDiary();
             InitGroups();
         }
@@ -84,8 +86,17 @@ namespace Diary.ViewModels
         }
         private void OpenSettings(object obj)
         {
-            //var openSettings = new SettingsView();
+            var openSettings = new SettingsView();
+
+            openSettings.Closed += OpenSettings_Closed;
+            openSettings.ShowDialog();
         }
+
+        private void OpenSettings_Closed(object sender, EventArgs e)
+        {
+            RefreshDiary();
+        }
+
         private void RefreshStudents(object obj)
         {
             RefreshDiary();
@@ -142,6 +153,6 @@ namespace Diary.ViewModels
         public ICommand EditStudentCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
         public ICommand RefreshStudentsCommand { get; set; }
-        public ICommand SettingsStudentsCommand { get; set; }
+        public ICommand SettingsCommand { get; set; }
     }
 }

@@ -26,24 +26,24 @@ namespace Diary.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("local")]
-        public string ServerAdres {
+        public string Address {
             get {
-                return ((string)(this["ServerAdres"]));
+                return ((string)(this["Address"]));
             }
             set {
-                this["ServerAdres"] = value;
+                this["Address"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("SQLEXPRESS")]
-        public string ServerName {
+        public string Name {
             get {
-                return ((string)(this["ServerName"]));
+                return ((string)(this["Name"]));
             }
             set {
-                this["ServerName"] = value;
+                this["Name"] = value;
             }
         }
         
@@ -74,12 +74,12 @@ namespace Diary.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1234")]
-        public string DataBesePassword {
+        public string DataBasePassword {
             get {
-                return ((string)(this["DataBesePassword"]));
+                return ((string)(this["DataBasePassword"]));
             }
             set {
-                this["DataBesePassword"] = value;
+                this["DataBasePassword"] = value;
             }
         }
     }

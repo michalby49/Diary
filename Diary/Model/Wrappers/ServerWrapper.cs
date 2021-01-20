@@ -29,6 +29,7 @@ namespace Diary.Model.Wrappers
             set
             {
                 Settings.Default.Name = value;
+
             }
         }
         public static string DataBaseName

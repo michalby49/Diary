@@ -2,10 +2,12 @@
 using Diary.Model.Domains;
 using Diary.Model.Wrappers;
 using Diary.Properties;
+using Diary.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +37,7 @@ namespace Diary.ViewModels
             set
             {
                 _serverWrapper = value;
-                onPropertyChanged();
+                
             }
         }
         private void Confirm(object obj)
@@ -48,21 +50,9 @@ namespace Diary.ViewModels
 
         private void SaveSettings()
         {
-            if(Test())
-                Settings.Default.Save();
-            else
-            {
-                _ = ApliactionRestart();
-            }
+            ApliactionRestart();
 
         }
-
-        private bool Test()
-        {
-            var serverWrapper = new ServerWrapper()
-            if (ServerWrapper.Address == )
-        }
-
         private async Task ApliactionRestart()
         {
             var metroWindow = Application.Current.MainWindow as MetroWindow;
@@ -72,10 +62,14 @@ namespace Diary.ViewModels
                 return;
 
             Settings.Default.Save();
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+
         }
 
         private void Close(object obj)
         {
+            
             CloseWindow(obj as Window);
         }
         private void CloseWindow(Window window)

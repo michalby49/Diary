@@ -11,6 +11,7 @@ using Diary.Model.Wrappers;
 using System.Linq;
 using Diary.Model.Domains;
 using System;
+using System.Data.SqlClient;
 
 namespace Diary.ViewModels
 {
@@ -19,11 +20,24 @@ namespace Diary.ViewModels
         private Repository _repository = new Repository();
         public MainViewModel()
         {
-            
-            using (var context = new ApplicationDbContext())
+
+            try
             {
-                var students = context.Students.ToList();
+                using (SqlConnection conn = new SqlConnection($@"Server=({ServerWrapper.Address})\{ServerWrapper.Name};Database={ServerWrapper.DataBaseName};User Id={ServerWrapper.DataBaseLogin};Password={ServerWrapper.DataBasePassword};App=EntityFramework"))
+                {
+                    conn.Open();
+                }
             }
+            catch (Exception ex)
+            {
+                var openSettings = new SettingsView();
+
+                openSettings.Closed += OpenSettings_Closed;
+                openSettings.ShowDialog();
+            }
+
+
+
 
             AddStudentCommand = new RelayCommand(AddEditStudent);
             EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);

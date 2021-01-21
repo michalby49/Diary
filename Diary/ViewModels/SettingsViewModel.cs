@@ -20,10 +20,11 @@ namespace Diary.ViewModels
     {
         ServerWrapper serverWrapper = new ServerWrapper();
         
-        public SettingsViewModel()
+        public SettingsViewModel(bool needRestart)
         {
             ServerWrapper = new ServerWrapper();
-            
+            ServerWrapper.NeedRestart = needRestart;
+
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
         }
@@ -42,24 +43,22 @@ namespace Diary.ViewModels
         }
         private void Confirm(object obj)
         {
-            SaveSettings();
+            if (ServerWrapper.NeedRestart)
+            {
+                Settings.Default.Save();
+                ApliactionRestart();
+            }
+            else
+                Settings.Default.Save();
             
-
             CloseWindow(obj as Window);
         }
 
-        private void SaveSettings()
-        {
-            ApliactionRestart();
-
-        }
+        
         private async Task ApliactionRestart()
         {
             var metroWindow = Application.Current.MainWindow as MetroWindow;
-            var dialog = await metroWindow.ShowMessageAsync("Restart", $"Aby kontynuować należy zrestartować aplikacje", MessageDialogStyle.AffirmativeAndNegative);
-
-            if (dialog != MessageDialogResult.Affirmative)
-                return;
+            var dialog = await metroWindow.ShowMessageAsync("Restart", $"Aby kontynuować należy zrestartować aplikacje", MessageDialogStyle.Affirmative);
 
             Settings.Default.Save();
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);

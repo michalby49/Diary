@@ -12,30 +12,37 @@ using System.Linq;
 using Diary.Model.Domains;
 using System;
 using System.Data.SqlClient;
+using Diary.Properties;
 
 namespace Diary.ViewModels
 {
     class MainViewModel : ViewModelBase
     {
         private Repository _repository = new Repository();
+        
         public MainViewModel()
         {
-
-            try
+            bool settingsAreGood;
+            do
             {
-                using (SqlConnection conn = new SqlConnection($@"Server=({ServerWrapper.Address})\{ServerWrapper.Name};Database={ServerWrapper.DataBaseName};User Id={ServerWrapper.DataBaseLogin};Password={ServerWrapper.DataBasePassword};App=EntityFramework"))
+                try
                 {
-                    conn.Open();
+                    settingsAreGood = true;
+
+                    using (SqlConnection conn = new SqlConnection($@"Server=({ServerWrapper.Address})\{ServerWrapper.Name};Database={ServerWrapper.DataBaseName};User Id={ServerWrapper.DataBaseLogin};Password={ServerWrapper.DataBasePassword};App=EntityFramework"))
+                    {
+                        conn.Open();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                var openSettings = new SettingsView();
+                catch (Exception)
+                {
+                    var openSettings = new SettingsView(false);
+                    settingsAreGood = false;
 
-                openSettings.Closed += OpenSettings_Closed;
-                openSettings.ShowDialog();
-            }
-
+                    openSettings.ShowDialog();
+                }
+                
+            } while (!settingsAreGood);
 
 
 
@@ -100,7 +107,7 @@ namespace Diary.ViewModels
         }
         private void OpenSettings(object obj)
         {
-            var openSettings = new SettingsView();
+            var openSettings = new SettingsView(true);
 
             openSettings.Closed += OpenSettings_Closed;
             openSettings.ShowDialog();
@@ -108,7 +115,7 @@ namespace Diary.ViewModels
 
         private void OpenSettings_Closed(object sender, EventArgs e)
         {
-            RefreshDiary();
+            Settings.Default.Reload();
         }
 
         private void RefreshStudents(object obj)

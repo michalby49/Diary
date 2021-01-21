@@ -65,5 +65,6 @@ namespace Diary.Model.Wrappers
                 Settings.Default.DataBasePassword = value;
             }
         }
+        public static bool NeedRestart { get; set; }
     }
 }

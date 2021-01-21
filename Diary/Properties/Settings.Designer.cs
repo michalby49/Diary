@@ -25,7 +25,7 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("local")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Address {
             get {
                 return ((string)(this["Address"]));
@@ -37,7 +37,7 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SQLEXPRESS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Name {
             get {
                 return ((string)(this["Name"]));
@@ -49,7 +49,7 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Diary")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DataBaseName {
             get {
                 return ((string)(this["DataBaseName"]));
@@ -61,7 +61,7 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("michal")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DataBaseLogin {
             get {
                 return ((string)(this["DataBaseLogin"]));
@@ -73,7 +73,7 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1234")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DataBasePassword {
             get {
                 return ((string)(this["DataBasePassword"]));

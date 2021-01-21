@@ -3,19 +3,19 @@
   <Profiles />
   <Settings>
     <Setting Name="Address" Type="System.String" Scope="User">
-      <Value Profile="(Default)">local</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Name" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SQLEXPRESS</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DataBaseName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Diary</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DataBaseLogin" Type="System.String" Scope="User">
-      <Value Profile="(Default)">michal</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DataBasePassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">1234</Value>
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

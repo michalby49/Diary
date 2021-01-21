@@ -94,11 +94,11 @@ namespace Diary
             var subRating = studentsRatings
                     .Where(x => x.SubjectId == (int)Subject.Math)
                     .Select(x => x.Rate);
-            var newsubRating = newRatings
+            var newSubRating = newRatings
                 .Where(x => x.SubjectId == (int)Subject.Math)
                 .Select(x => x.Rate);
-            var subRatingsToDelete = subRating.Except(newsubRating).ToList();
-            var subRatingsToAdd = newsubRating.Except(subRating).ToList();
+            var subRatingsToDelete = subRating.Except(newSubRating).ToList();
+            var subRatingsToAdd = newSubRating.Except(subRating).ToList();
 
             subRatingsToDelete.ForEach(x =>
             {
@@ -118,6 +118,7 @@ namespace Diary
                     StudentId = student.Id,
                     SubjectId = (int)subject,
                 };
+                context.Ratings.Add(ratingToAdd);
             });
         }
 

@@ -92,10 +92,10 @@ namespace Diary
         private static void UpdateRate(Student student, List<Rating> newRatings, ApplicationDbContext context, List<Rating> studentsRatings, Subject subject)
         {
             var subRating = studentsRatings
-                    .Where(x => x.SubjectId == (int)Subject.Math)
+                    .Where(x => x.SubjectId == (int)subject)
                     .Select(x => x.Rate);
             var newSubRating = newRatings
-                .Where(x => x.SubjectId == (int)Subject.Math)
+                .Where(x => x.SubjectId == (int)subject)
                 .Select(x => x.Rate);
             var subRatingsToDelete = subRating.Except(newSubRating).ToList();
             var subRatingsToAdd = newSubRating.Except(subRating).ToList();

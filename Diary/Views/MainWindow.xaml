@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Diary" xmlns:viewmodels="clr-namespace:Diary.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Dziennik Ucznia" Height="450" Width="817">
+        Title="Dziennik Ucznia" Height="450" Width="859.76">
     
     <Grid>
         
